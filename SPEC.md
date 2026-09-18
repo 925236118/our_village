@@ -43,7 +43,7 @@ entries/
 
 | 路径 | 说明 |
 | --- | --- |
-| `shared/` | 共享代码：角色壳子、玩家、对话框、导航瓦片集 |
+| `shared/` | 共享代码：角色壳子、玩家、对话框、导航瓦片集、家具瓦片集 |
 | `project.godot` | 项目配置 |
 | `tools/` | 主办方的工具脚本 |
 | `entries/<别人的目录>/` | 别人的作品 |
@@ -290,6 +290,19 @@ python tools/inspect_sheet.py entries/你的目录/char/sheet.png
 > 「可见导航 / Visible Navigation」，能看到绿色的导航网格。
 > 网格要完整覆盖你想让角色走的地方。
 
+### 5.3.1 室内家具素材（非硬性要求）
+
+`shared/tileset/furniture_tileset.tres` 是主办方配好的家具瓦片集：
+27 张 48×48 的贴图（`shared/tileset/textures/`），
+多格家具的尺寸和贴图原点都已经调好，**不要改它**。
+
+用法和 NavLayer 一样：加一个 `TileMapLayer`，`Tile Set` 填这个 tres，
+然后刷地面、墙和家具就行。
+
+> 这一条**不是硬性要求**。范例 `entries/_example/` 的地板和墙还是纯色块，
+> 用不用素材随你 —— 只是用它可以省掉自己量尺寸、对原点的功夫。
+> 无论用不用，`NavLayer` 都必须按 5.3 铺好。
+
 ### 5.4 出口 `ExitPortal`（H-16）
 
 把 `shared/scene_portal/exit_portal.tscn` 拖进场景，然后在检查器里：
@@ -375,5 +388,9 @@ git push origin add-your_name
 
 ## 9. 素材出处
 
-室内家具素材来自 **LimeZu**（<https://limezu.itch.io>）。
-仓库是私有的，**不要把素材包或本仓库的内容转发给参加者以外的人**。
+室内家具素材来自 **LimeZu**（<https://limezu.itch.io>），
+已经随仓库放在 `shared/tileset/textures/`，clone 下来就能用。
+
+LimeZu 的授权**不允许把素材再分发到本仓库以外**。
+在仓库里用没问题，但请不要把素材单独拷出去、或上传到别的地方。
+仓库是私有的，**也不要把本仓库的内容转发给参加者以外的人**。
