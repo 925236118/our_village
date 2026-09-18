@@ -1,0 +1,73 @@
+[gd_scene format=4 uid="uid://5va4r63wwr6e"]
+
+[ext_resource type="TileSet" uid="uid://cgryq4oxcic7y" path="res://shared/tileset/nav_tileset.tres" id="1_22tvf"]
+[ext_resource type="PackedScene" path="res://shared/scene_portal/exit_portal.tscn" id="2_x75og"]
+[ext_resource type="PackedScene" uid="uid://cu45kxwnynsi" path="res://shared/npc/npc.tscn" id="4_ekabs"]
+[ext_resource type="Texture2D" uid="uid://bbs0213g1kgmi" path="res://entries/_example/char/sheet.png" id="6_dartw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhiv7"]
+size = Vector2(768, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hepxj"]
+size = Vector2(768, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t3wq"]
+size = Vector2(48, 528)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpkuq"]
+size = Vector2(48, 528)
+
+[node name="Entry" type="Node2D" unique_id=1867363339]
+metadata/_edit_horizontal_guides_ = [866.0]
+
+[node name="NavLayer" type="TileMapLayer" parent="." unique_id=302566083]
+tile_map_data = PackedByteArray("AAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAkAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAALAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAALAAkAAAAAAAAAAAAMAAEAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAAAAAAMAAgAAAAAAAAAAAAMAAkAAAAAAAAAAAANAAEAAAAAAAAAAAANAAIAAAAAAAAAAAANAAMAAAAAAAAAAAANAAQAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAANAAcAAAAAAAAAAAANAAgAAAAAAAAAAAANAAkAAAAAAAAAAAAOAAEAAAAAAAAAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAAAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAAAAAAOAAcAAAAAAAAAAAAOAAgAAAAAAAAAAAAOAAkAAAAAAAAAAAA=")
+tile_set = ExtResource("1_22tvf")
+
+[node name="Wall" type="Polygon2D" parent="." unique_id=204553350]
+color = Color(0.13725491, 0.14509805, 0.17254902, 1)
+polygon = PackedVector2Array(0, 0, 768, 0, 768, 528, 0, 528)
+
+[node name="Floor" type="Polygon2D" parent="." unique_id=468382260]
+position = Vector2(48, 48)
+color = Color(0.23137255, 0.24705882, 0.2901961, 1)
+polygon = PackedVector2Array(0, 0, 672, 0, 672, 432, 0, 432)
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1063712883]
+
+[node name="@CollisionShape2D@2" type="CollisionShape2D" parent="Walls" unique_id=1646218964]
+position = Vector2(384, 24)
+shape = SubResource("RectangleShape2D_yhiv7")
+
+[node name="@CollisionShape2D@3" type="CollisionShape2D" parent="Walls" unique_id=971990698]
+position = Vector2(384, 504)
+shape = SubResource("RectangleShape2D_hepxj")
+
+[node name="@CollisionShape2D@4" type="CollisionShape2D" parent="Walls" unique_id=2136652956]
+position = Vector2(24, 264)
+shape = SubResource("RectangleShape2D_6t3wq")
+
+[node name="@CollisionShape2D@5" type="CollisionShape2D" parent="Walls" unique_id=1674777059]
+position = Vector2(744, 264)
+shape = SubResource("RectangleShape2D_lpkuq")
+
+[node name="EntryPoint" type="Marker2D" parent="." unique_id=1679703718 groups=["entry_point"]]
+position = Vector2(120, 408)
+
+[node name="ExitPortal" parent="." unique_id=1385675529 instance=ExtResource("2_x75og")]
+position = Vector2(696, 264)
+target_scene = "res://entries/_example/inner_room.tscn"
+
+[node name="Npc" parent="." unique_id=739789060 instance=ExtResource("4_ekabs")]
+position = Vector2(408, 216)
+sheet = ExtResource("6_dartw")
+dialogue_json = "res://entries/_example/dialogue.json"
+
+[node name="Waypoint1" type="Marker2D" parent="Npc" unique_id=1082442105]
+position = Vector2(-240, -48)
+
+[node name="Waypoint2" type="Marker2D" parent="Npc" unique_id=65796813]
+position = Vector2(0, 144)
+
+[node name="Waypoint3" type="Marker2D" parent="Npc" unique_id=1899706504]
+position = Vector2(192, 0)

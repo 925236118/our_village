@@ -1,0 +1,11 @@
+{
+  "lines": [
+	{"id": "morning",   "text": "早啊，今天来得挺早。",     "start": "06:00", "end": "09:00", "weight": 3},
+	{"id": "forenoon",  "text": "上午的活儿总是最多的时候。", "start": "09:00", "end": "12:00", "weight": 2},
+	{"id": "noon",      "text": "该吃午饭了，一起去？",       "start": "12:00", "end": "13:30", "weight": 5},
+	{"id": "afternoon", "text": "下午容易犯困啊……",         "start": "13:30", "end": "18:00", "weight": 2},
+	{"id": "evening",   "text": "这个点还在忙？辛苦了。",     "start": "18:00", "end": "22:00", "weight": 3},
+	{"id": "night",     "text": "夜深了，早点回去休息吧。",   "start": "22:00",                   "weight": 4},
+	{"id": "any",       "text": "有什么事随时叫我。",                             "weight": 1}
+  ]
+}
