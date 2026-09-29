@@ -43,7 +43,7 @@ entries/
 
 | 路径 | 说明 |
 | --- | --- |
-| `shared/` | 共享代码：角色壳子、玩家、对话框、导航瓦片集、家具瓦片集 |
+| `shared/` | 共享代码：角色壳子、玩家、对话框、导航瓦片集、房间瓦片集、家具瓦片集 |
 | `project.godot` | 项目配置 |
 | `tools/` | 主办方的工具脚本 |
 | `entries/<别人的目录>/` | 别人的作品 |
@@ -293,14 +293,15 @@ python tools/inspect_sheet.py entries/你的目录/char/sheet.png
 ### 5.3.1 室内家具素材（非硬性要求）
 
 `shared/tileset/furniture_tileset.tres` 是主办方配好的家具瓦片集：
-27 张 48×48 的贴图（`shared/tileset/textures/`），
+27 张 48×48 的贴图（`shared/tileset/textures/furnitures/`），
 多格家具的尺寸和贴图原点都已经调好，**不要改它**。
 
-用法和 NavLayer 一样：加一个 `TileMapLayer`，`Tile Set` 填这个 tres，
-然后刷地面、墙和家具就行。
+地板和墙另用 `shared/tileset/room.tres`（贴图在 `textures/room-builder/`），
+用法和家具一样：加一个 `TileMapLayer`，`Tile Set` 填对应的 tres 再刷。
 
-> 这一条**不是硬性要求**。范例 `entries/_example/` 的地板和墙还是纯色块，
-> 用不用素材随你 —— 只是用它可以省掉自己量尺寸、对原点的功夫。
+> 这一条**不是硬性要求**。范例 `entries/_example/` 已经搭成完整样板间
+> （地板、墙、家具都铺好），照着它的节点树抄就行 —— 用不用素材随你，
+> 只是用它可以省掉自己量尺寸、对原点的功夫。
 > 无论用不用，`NavLayer` 都必须按 5.3 铺好。
 
 ### 5.4 出口 `ExitPortal`（H-16）

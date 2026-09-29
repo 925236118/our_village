@@ -23,16 +23,20 @@ cd our_village
 
 ```
 shared/tileset/
-├── furniture_tileset.tres   ← 铺地面、墙和家具，用这个
+├── room.tres                ← 房间瓦片集，刷地板和墙用这个
+├── furniture_tileset.tres   ← 家具瓦片集，刷家具用这个
 ├── nav_tileset.tres         ← 导航层用，见下面第 6 步
-└── textures/                ← 27 张 48×48 贴图，tileset 已经配好引用
+└── textures/
+    ├── furnitures/          ← 27 张 48×48 家具贴图，tileset 已配好引用
+    └── room-builder/        ← 房间构建贴图（地板、墙、拱门）
 ```
 
 clone 下来就能直接用，不需要再下载或解压任何东西。
 
 用 Godot 打开这个文件夹，然后按 <kbd>F5</kbd>。
 你应该会看到一个房间里有个角色在走来走去 —— 那就是范例 `entries/_example/`。
-（范例的地板和墙是纯色块，没用到家具素材 —— 素材怎么用见下面第 5 步。）
+范例已经搭成一个完整的样板间：铺了地板和墙、摆了家具、铺好导航，
+直接照着它的节点树抄就行（怎么搭见下面第 5 步）。
 
 ### 开始做你自己的
 
@@ -44,9 +48,10 @@ clone 下来就能直接用，不需要再下载或解压任何东西。
    （生成器如果有「裁剪 / trim」选项，**关掉**）
 4. **改台词**：编辑 `dialogue.json`，照着范例的格式加几句
    （注意引号要是英文的 `"`，从微信、Word 里复制来的弯引号 `“ ”` 会让文件读不了）
-5. **搭场景**：打开你的 `entry.tscn`，加一个 `TileMapLayer`，
-   `Tile Set` 填 `shared/tileset/furniture_tileset.tres`，就能刷地面、墙和家具
-   （范例的地板是纯色块，没演示这一步，照着 tileset 里的图块摆就行）
+5. **搭场景**：打开你的 `entry.tscn`，照着范例 `entries/_example/` 的节点树搭 ——
+   - 用 `shared/tileset/room.tres` 刷**地板和墙**（分「地板 / 后墙 / 前墙」几层，前墙压在家具上做遮挡）
+   - 用 `shared/tileset/furniture_tileset.tres` 刷**家具**（放进 `YSortParent` 下做深度排序）
+   - 范例就是完整的样板间，直接复制它的图层结构改就行
 6. **铺导航**：在 `NavLayer` 上，把角色能走的地面刷满格子
 7. **摆角色和出口**：把 `shared/npc/npc.tscn` 和
    `shared/scene_portal/exit_portal.tscn` 拖进场景，在检查器里填好
@@ -78,7 +83,7 @@ shared/             共享代码，不要改
   player/           共享玩家，引擎自动生成，你不用管
   scene_portal/     出口 exit_portal.tscn —— 走进去就切场景
   dialogue/         对话表解析 + 对话框 UI
-  tileset/          瓦片集：nav_tileset.tres（导航）+ furniture_tileset.tres（家具）
+  tileset/          瓦片集：room.tres（地板墙）+ furniture_tileset.tres（家具）+ nav_tileset.tres（导航）
   autoload/         GameShell：生成玩家、转发对话
 tools/              主办方的脚本，你一般用不到
 ```
@@ -138,7 +143,7 @@ python tools/inspect_sheet.py entries/你的目录/char/sheet.png
 ## 素材出处
 
 室内家具素材来自 **LimeZu**（<https://limezu.itch.io>），
-已经随仓库放在 `shared/tileset/textures/`，clone 下来就能用。
+已经随仓库放在 `shared/tileset/textures/furnitures/`，房间构建贴图在 `textures/room-builder/`，clone 下来就能用。
 
 LimeZu 的授权**不允许把素材再分发到本仓库以外**。
 在仓库里用没问题，但请不要把素材单独拷出去、或传到别的地方 ——

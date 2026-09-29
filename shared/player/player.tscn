@@ -8,6 +8,7 @@ size = Vector2(28, 18)
 
 [node name="Player" type="CharacterBody2D" unique_id=226121368 groups=["player"]]
 collision_layer = 2
+collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_player")
 sheet = ExtResource("2_ejjm8")
